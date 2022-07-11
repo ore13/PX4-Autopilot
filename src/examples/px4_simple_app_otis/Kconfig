@@ -1,0 +1,5 @@
+menuconfig EXAMPLES_PX4_SIMPLE_APP_OTIS
+	bool "PX4 Simple App (Otis)"
+	default n
+	--help--
+		Enable PX4 simple app (Otis)
