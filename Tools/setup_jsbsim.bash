@@ -31,8 +31,8 @@ case "$MODEL" in
             MODEL_NAME="hexarotor_x"
             ;;
         *)
-            echo "Unknown Model"
-            exit 1
+            echo "Non - Default model. Setting JSBSIM_AIRCRAFT_MODEL = $MODEL"
+            MODEL_NAME="$MODEL"
 
 esac
 

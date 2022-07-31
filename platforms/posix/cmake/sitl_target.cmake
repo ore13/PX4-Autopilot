@@ -263,11 +263,13 @@ set(models_jsbsim
 	quadrotor_x
 	hexarotor_x
 	malolo
+	dg101g
 )
 
 set(worlds_jsbsim
 	none
 	LSZH
+	Kaiotere
 )
 
 foreach(debugger ${debuggers})

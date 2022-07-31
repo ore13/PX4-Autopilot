@@ -204,14 +204,20 @@ elif [ "$program" == "jsbsim" ] && [ -z "$no_sim" ]; then
 	if [[ -n "$HEADLESS" ]]; then
 		echo "not running flightgear gui"
 	else
-		fgfs --fdm=null \
+		# Removed --airport as it conflicted with the scene definition. Corrected to fdm=external.
+		# Disabling terrasync, clouds, random objects etc dramatically improves load time
+		fgfs --fdm=external \
 			--native-fdm=socket,in,60,,5550,udp \
 			--aircraft=$JSBSIM_AIRCRAFT_MODEL \
-			--airport=${world} \
-			--disable-hud \
-			--disable-ai-models &> /dev/null &
+			--disable-hud=true \
+			--disable-terrasync \
+			--disable-ai-traffic \
+			--disable-clouds \
+			--disable-random-objects \
+			--disable-ai-models=true &> /dev/null &
 		FGFS_PID=$!
 	fi
+	# use 1> /dev/null to still get stderr from command.
 	"${build_path}/build_jsbsim_bridge/jsbsim_bridge" ${model} -s "${src_path}/Tools/jsbsim_bridge/scene/${world}.xml" 2> /dev/null &
 	JSBSIM_PID=$!
 fi
