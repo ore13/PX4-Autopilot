@@ -201,6 +201,7 @@ elif [ "$program" == "flightgear" ] && [ -z "$no_sim" ]; then
 	FG_BRIDGE_PID=$!
 elif [ "$program" == "jsbsim" ] && [ -z "$no_sim" ]; then
 	source "$src_path/Tools/setup_jsbsim.bash" "${src_path}" "${build_path}" ${model}
+
 	if [[ -n "$HEADLESS" ]]; then
 		echo "not running flightgear gui"
 	else
@@ -213,6 +214,7 @@ elif [ "$program" == "jsbsim" ] && [ -z "$no_sim" ]; then
 			--disable-terrasync \
 			--disable-ai-traffic \
 			--disable-clouds \
+			--timeofday=noon \
 			--disable-random-objects \
 			--disable-ai-models=true &> /dev/null &
 		FGFS_PID=$!
